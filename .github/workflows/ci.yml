@@ -199,8 +199,8 @@ jobs:
           export ota="out/target/product/$device/*ota*.zip"
           cd $my_dir/$rom_name
           telegram_message() {
-	               curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
-	               -d chat_id="${tg_id}" \
+                   curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
+                   -d chat_id="${tg_id}" \
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
@@ -407,8 +407,8 @@ jobs:
           export ota="out/target/product/$device/*ota*.zip"
           cd $my_dir/$rom_name
           telegram_message() {
-	               curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
-	               -d chat_id="${tg_id}" \
+                   curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
+                   -d chat_id="${tg_id}" \
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
