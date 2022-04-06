@@ -175,10 +175,11 @@ jobs:
           export output="out/target/product/$device/*$rel_date*.zip"
           export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
           export ota="out/target/product/$device/*ota*.zip"
+          export file_name="$(cd out/target/product/$device && ls *$rel_date*.zip)"
           cd $my_dir/$rom_name
           rm -rf $shasum
           rm -rf $ota
-          rclone copy --drive-chunk-size 256M --stats 1s $output NFS86:$device/$rom_name -P
+          curl -T $file_name https://oshi.at/${file_name} > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -192,11 +193,38 @@ jobs:
           export device="juice" # Change to your Device code name
           export device_model="POCO M3/9T (${device})" # Change to your Device model name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
+          export branch_name=$(grep init $my_dir/script/$device/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
           export rel_date="$(date "+%Y%m%d")"
           export output="out/target/product/$device/*$rel_date*.zip"
           export ota="out/target/product/$device/*ota*.zip"
           cd $my_dir/$rom_name
-          curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="<code>${device_model} Build $rom_name:</code> <b>Succes.</b>[✅]%0A %0A<b>Download link:</b> https://rombuilder.projek.workers.dev/$device/$rom_name/$(cd out/target/product/$device && ls *$rel_date*.zip)"
+          telegram_message() {
+	               curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
+	               -d chat_id="${tg_id}" \
+                   -d parse_mode="HTML" \
+                   -d text="$1"
+          }
+          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f3)"
+          echo "=============================================="
+          echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
+          echo "=============================================="
+          DATE_L="$(date +%d\ %B\ %Y)"
+          DATE_S="$(date +"%T")"
+          echo -e \
+          "
+          🚀 ${rom_name}
+          
+          ✅ Build Completed Successfully!
+          
+          📱 Device: "${device_model}"
+          🖥 Branch Build: "${branch_name}"
+          ⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
+          📅 Date: "$(date +%d\ %B\ %Y)"
+          ⏱ Time: "$(date +%T)"
+          " > tg.html
+          TG_TEXT=$(< tg.html)
+          telegram_message "$TG_TEXT"
+          echo " "
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
@@ -355,10 +383,11 @@ jobs:
           export output="out/target/product/$device/*$rel_date*.zip"
           export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
           export ota="out/target/product/$device/*ota*.zip"
+          export file_name="$(cd out/target/product/$device && ls *$rel_date*.zip)"
           cd $my_dir/$rom_name
           rm -rf $shasum
           rm -rf $ota
-          rclone copy --drive-chunk-size 256M --stats 1s $output NFS86:$device/$rom_name -P
+          curl -T $file_name https://oshi.at/${file_name} > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -372,11 +401,38 @@ jobs:
           export device="rosy" # Change to your Device code name
           export device_model="Redmi 5 (${device})" # Change to your Device model name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
+          export branch_name=$(grep init $my_dir/script/$device/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
           export rel_date="$(date "+%Y%m%d")"
           export output="out/target/product/$device/*$rel_date*.zip"
           export ota="out/target/product/$device/*ota*.zip"
           cd $my_dir/$rom_name
-          curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="<code>${device_model} Build $rom_name:</code> <b>Succes.</b>[✅]%0A %0A<b>Download link:</b> https://rombuilder.projek.workers.dev/$device/$rom_name/$(cd out/target/product/$device && ls *$rel_date*.zip)"
+          telegram_message() {
+	               curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
+	               -d chat_id="${tg_id}" \
+                   -d parse_mode="HTML" \
+                   -d text="$1"
+          }
+          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f3)"
+          echo "=============================================="
+          echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
+          echo "=============================================="
+          DATE_L="$(date +%d\ %B\ %Y)"
+          DATE_S="$(date +"%T")"
+          echo -e \
+          "
+          🚀 ${rom_name}
+          
+          ✅ Build Completed Successfully!
+          
+          📱 Device: "${device_model}"
+          🖥 Branch Build: "${branch_name}"
+          ⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
+          📅 Date: "$(date +%d\ %B\ %Y)"
+          ⏱ Time: "$(date +%T)"
+          " > tg.html
+          TG_TEXT=$(< tg.html)
+          telegram_message "$TG_TEXT"
+          echo " "
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
