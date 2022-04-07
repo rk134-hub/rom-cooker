@@ -233,8 +233,8 @@ jobs:
           rm -rf $my_dir/$rom_name/tg.html
 
   deploy-rosy:
-    name: Redmi 5 (rosy)
-    needs: deploy-juice
+    name: Redmi 5
+    needs: build
     runs-on: ubuntu-latest
     if: github.actor == 'NFS86'
     steps:
@@ -442,3 +442,30 @@ jobs:
           cd $my_dir
           rm -rf .repo*
           rm -rf $my_dir/$rom_name/tg.html
+
+  deploy-whyred:
+    name: Redmi note 5 pro
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.actor == 'NFS86'
+    steps:
+    - name: Clone repo & checkout code
+      uses: actions/checkout@v2
+
+    - name: Test
+      run: |
+        echo Hello...
+
+
+  deploy-tulip:
+    name: Redmi note 6 pro
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.actor == 'NFS86'
+    steps:
+    - name: Clone repo & checkout code
+      uses: actions/checkout@v2
+
+    - name: Test
+      run: |
+        echo Hello...
