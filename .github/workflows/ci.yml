@@ -180,7 +180,7 @@ jobs:
           rm -rf $shasum
           rm -rf $ota
           cd $my_dir/$rom_name/out/target/product/$device
-          curl -T *$rel_date*.zip https://oshi.at/129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          curl https://oshi.at -F f=@*$rel_date*.zip -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -205,7 +205,7 @@ jobs:
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat out/target/product/$device/link.txt | grep Download | cut -d\  -f1)"
+          DL_LINK="$(cat out/target/product/$device/link.txt | grep DL: | cut -d\  -f2)"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
@@ -390,7 +390,7 @@ jobs:
           rm -rf $shasum
           rm -rf $ota
           cd $my_dir/$rom_name/out/target/product/$device
-          curl -T *$rel_date*.zip https://oshi.at/129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          curl https://oshi.at -F f=@*$rel_date*.zip -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -415,7 +415,7 @@ jobs:
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat out/target/product/$device/link.txt | grep Download | cut -d\  -f1)"
+          DL_LINK="$(cat out/target/product/$device/link.txt | grep DL: | cut -d\  -f2)"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
