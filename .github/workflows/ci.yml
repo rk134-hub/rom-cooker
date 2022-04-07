@@ -205,7 +205,7 @@ jobs:
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f1)"
+          DL_LINK="$(cat out/target/product/$device/link.txt | grep Download | cut -d\  -f1)"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
@@ -229,7 +229,6 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
-          rm -rf $my_dir/$rom_name/link.txt
           rm -rf $my_dir/$rom_name/tg.html
 
   deploy-rosy:
@@ -416,7 +415,7 @@ jobs:
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f1)"
+          DL_LINK="$(cat out/target/product/$device/link.txt | grep Download | cut -d\  -f1)"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
@@ -440,5 +439,4 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
-          rm -rf $my_dir/$rom_name/link.txt
           rm -rf $my_dir/$rom_name/tg.html
