@@ -180,7 +180,7 @@ jobs:
           rm -rf $shasum
           rm -rf $ota
           cd $my_dir/$rom_name/out/target/product/$device
-          curl -T *$rel_date*.zip https://oshi.at > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          curl -T *$rel_date*.zip https://oshi.at/129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -390,7 +390,7 @@ jobs:
           rm -rf $shasum
           rm -rf $ota
           cd $my_dir/$rom_name/out/target/product/$device
-          curl -T *$rel_date*.zip https://oshi.at > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          curl -T *$rel_date*.zip https://oshi.at/129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
