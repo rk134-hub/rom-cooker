@@ -205,7 +205,7 @@ jobs:
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f3)"
+          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f1)"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
@@ -416,7 +416,7 @@ jobs:
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f3)"
+          DL_LINK="$(cat link.txt | grep Download | cut -d\  -f1)"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
