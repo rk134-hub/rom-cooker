@@ -174,13 +174,14 @@ jobs:
           export device=juice # Change to your Device code name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export rel_date="$(date "+%Y%m%d")"
+          export file_name="$(echo *$rel_date*.zip)"
           export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
           export ota="out/target/product/$device/*ota*.zip"
           cd $my_dir/$rom_name
           rm -rf $shasum
           rm -rf $ota
           cd $my_dir/$rom_name/out/target/product/$device
-          curl https://oshi.at -F f=@*$rel_date*.zip -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          curl https://oshi.at -F f=@$file_name -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -233,7 +234,7 @@ jobs:
 
   deploy-rosy:
     name: Redmi 5 (rosy)
-    needs: build
+    needs: deploy-juice
     runs-on: ubuntu-latest
     if: github.actor == 'NFS86'
     steps:
@@ -384,13 +385,14 @@ jobs:
           export device=rosy # Change to your Device code name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export rel_date="$(date "+%Y%m%d")"
+          export file_name="$(echo *$rel_date*.zip)"
           export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
           export ota="out/target/product/$device/*ota*.zip"
           cd $my_dir/$rom_name
           rm -rf $shasum
           rm -rf $ota
           cd $my_dir/$rom_name/out/target/product/$device
-          curl https://oshi.at -F f=@*$rel_date*.zip -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          curl https://oshi.at -F f=@$file_name -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
