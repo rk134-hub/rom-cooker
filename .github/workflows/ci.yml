@@ -174,14 +174,13 @@ jobs:
           export device=juice # Change to your Device code name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export rel_date="$(date "+%Y%m%d")"
-          export output="out/target/product/$device/*$rel_date*.zip"
           export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
           export ota="out/target/product/$device/*ota*.zip"
-          export file_name="$(cd out/target/product/$device && ls *$rel_date*.zip)"
           cd $my_dir/$rom_name
           rm -rf $shasum
           rm -rf $ota
-          curl -T $file_name https://oshi.at/${file_name} > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          cd $my_dir/$rom_name/out/target/product/$device
+          curl -T *$rel_date*.zip https://oshi.at/*$rel_date*.zip > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -230,6 +229,8 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
+          rm -rf $my_dir/$rom_name/link.txt
+          rm -rf $my_dir/$rom_name/tg.html
 
   deploy-rosy:
     name: Redmi 5 (rosy)
@@ -384,14 +385,13 @@ jobs:
           export device=rosy # Change to your Device code name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export rel_date="$(date "+%Y%m%d")"
-          export output="out/target/product/$device/*$rel_date*.zip"
           export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
           export ota="out/target/product/$device/*ota*.zip"
-          export file_name="$(cd out/target/product/$device && ls *$rel_date*.zip)"
           cd $my_dir/$rom_name
           rm -rf $shasum
           rm -rf $ota
-          curl -T $file_name https://oshi.at/${file_name} > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          cd $my_dir/$rom_name/out/target/product/$device
+          curl -T *$rel_date*.zip https://oshi.at/*$rel_date*.zip > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -440,3 +440,5 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
+          rm -rf $my_dir/$rom_name/link.txt
+          rm -rf $my_dir/$rom_name/tg.html
