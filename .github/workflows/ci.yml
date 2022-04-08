@@ -182,7 +182,7 @@ jobs:
           cd $my_dir/$rom_name/out/target/product/$device
           export rel_date="$(date "+%Y%m%d")"
           export file_name="$(echo *${rel_date}*.zip)"
-          curl https://oshi.at -F f=@${file_name} -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          rclone copy --drive-chunk-size 256M --stats 1s ${file_name} NFS:$rom_name/$device -P
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -197,17 +197,16 @@ jobs:
           export device_model="POCO M3/9T (${device})" # Change to your Device model name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export branch_name=$(grep init $my_dir/script/$device/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
+          cd $my_dir/$rom_name/out/target/product/$device
           export rel_date="$(date "+%Y%m%d")"
-          export output="out/target/product/$device/*$rel_date*.zip"
-          export ota="out/target/product/$device/*ota*.zip"
-          cd $my_dir/$rom_name
+          export file_name="$(echo *${rel_date}*.zip)"
           telegram_message() {
                    curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
                    -d chat_id="${tg_id}" \
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat out/target/product/$device/link.txt | grep DL: | cut -d\  -f2)"
+          DL_LINK="https://rombuilder.projek.workers.dev/$rom_name/$device/$file_name"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
@@ -231,7 +230,6 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
-          rm -rf $my_dir/$rom_name/tg.html
 
   deploy-rosy:
     name: Redmi 5
@@ -394,7 +392,7 @@ jobs:
           cd $my_dir/$rom_name/out/target/product/$device
           export rel_date="$(date "+%Y%m%d")"
           export file_name="$(echo *${rel_date}*.zip)"
-          curl https://oshi.at -F f=@${file_name} -F expire=129600 > link.txt || { echo "WARNING: Failed to Upload the Build!"; }
+          rclone copy --drive-chunk-size 256M --stats 1s ${file_name} NFS:$rom_name/$device -P
 
     - name: Send notif..
       uses: NFS86/ssh-action@master
@@ -409,17 +407,16 @@ jobs:
           export device_model="Redmi 5 (${device})" # Change to your Device model name
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export branch_name=$(grep init $my_dir/script/$device/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
+          cd $my_dir/$rom_name/out/target/product/$device
           export rel_date="$(date "+%Y%m%d")"
-          export output="out/target/product/$device/*$rel_date*.zip"
-          export ota="out/target/product/$device/*ota*.zip"
-          cd $my_dir/$rom_name
+          export file_name="$(echo *${rel_date}*.zip)"
           telegram_message() {
                    curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
                    -d chat_id="${tg_id}" \
                    -d parse_mode="HTML" \
                    -d text="$1"
           }
-          DL_LINK="$(cat out/target/product/$device/link.txt | grep DL: | cut -d\  -f2)"
+          DL_LINK="https://rombuilder.projek.workers.dev/$rom_name/$device/$file_name"
           echo "=============================================="
           echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
           echo "=============================================="
@@ -443,7 +440,6 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
-          rm -rf $my_dir/$rom_name/tg.html
 
   deploy-whyred:
     name: Redmi note 5 pro
