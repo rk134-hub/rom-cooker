@@ -494,3 +494,38 @@ jobs:
     - name: Test
       run: |
         echo Hello...
+
+############################################################
+
+  deploy-disk:
+    name: Check Disk
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone Script..
+      uses: NFS86/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        user: medusa
+        pass: ${{ secrets.PASSWORD }}
+        args: "-tt"
+        command: |
+          echo #############################
+          df -h
+          lsblk
+          echo #############################
+
+  deploy-disk:
+    name: Check User active
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone Script..
+      uses: NFS86/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        user: medusa
+        pass: ${{ secrets.PASSWORD }}
+        args: "-tt"
+        command: |
+          echo #############################
+          w
+          echo #############################
