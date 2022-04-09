@@ -62,7 +62,7 @@ jobs:
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export command="$(head $my_dir/script/$device/build.sh -n $(expr $(grep '# build rom' $my_dir/script/$device/build.sh -n | cut -f1 -d:) - 1))"
           export only_sync=$(grep 'repo sync' $my_dir/script/$device/build.sh)
-          mkdir -p $my_dir/ccache/$rom_name/$device
+          mkdir -p $my_dir/ccache/$rom_name
           mkdir -p $my_dir/$rom_name
           cd $my_dir/$rom_name
           rm -rf .repo/local_manifests
@@ -147,7 +147,7 @@ jobs:
           export rel_date="$(date "+%Y%m%d")"
           cd $my_dir/$rom_name
           export ALLOW_MISSING_DEPENDENCIES=true
-          export CCACHE_DIR=$my_dir/ccache/$rom_name/$device
+          export CCACHE_DIR=$my_dir/ccache/$rom_name
           export CCACHE_EXEC=/usr/bin/ccache
           export USE_CCACHE=1
           ccache -o compression=true
@@ -274,7 +274,7 @@ jobs:
           export rom_name="$(grep init $my_dir/script/$device/build.sh -m 1 | cut -d / -f 4)"
           export command="$(head $my_dir/script/$device/build.sh -n $(expr $(grep '# build rom' $my_dir/script/$device/build.sh -n | cut -f1 -d:) - 1))"
           export only_sync=$(grep 'repo sync' $my_dir/script/$device/build.sh)
-          mkdir -p $my_dir/ccache/$rom_name/$device
+          mkdir -p $my_dir/ccache/$rom_name
           mkdir -p $my_dir/$rom_name
           cd $my_dir/$rom_name
           rm -rf .repo/local_manifests
@@ -359,7 +359,7 @@ jobs:
           export rel_date="$(date "+%Y%m%d")"
           cd $my_dir/$rom_name
           export ALLOW_MISSING_DEPENDENCIES=true
-          export CCACHE_DIR=$my_dir/ccache/$rom_name/$device
+          export CCACHE_DIR=$my_dir/ccache/$rom_name
           export CCACHE_EXEC=/usr/bin/ccache
           export USE_CCACHE=1
           ccache -o compression=true
