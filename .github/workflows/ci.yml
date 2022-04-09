@@ -501,7 +501,7 @@ jobs:
     name: Check Disk
     runs-on: ubuntu-latest
     steps:
-    - name: Clone Script..
+    - name: Check Disk Info..
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -518,7 +518,7 @@ jobs:
     name: Check User active
     runs-on: ubuntu-latest
     steps:
-    - name: Clone Script..
+    - name: Check User Info..
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
