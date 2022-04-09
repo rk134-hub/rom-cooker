@@ -514,7 +514,7 @@ jobs:
           lsblk
           echo #############################
 
-  deploy-disk:
+  deploy-user:
     name: Check User active
     runs-on: ubuntu-latest
     steps:
