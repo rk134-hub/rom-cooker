@@ -21,6 +21,8 @@ jobs:
       run: |
         curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="===================================%0A        ❗<b>Rom-Builder tool started</b>❗%0A==================================="
 
+############################################################
+
   deploy-juice:
     name: POCO M3/9T
     needs: build
@@ -230,6 +232,8 @@ jobs:
           rm -rf $my_dir/$rom_name/out/target/product/$device
           cd $my_dir
           rm -rf .repo*
+
+############################################################
 
   deploy-rosy:
     name: Redmi 5
@@ -441,11 +445,24 @@ jobs:
           cd $my_dir
           rm -rf .repo*
 
+############################################################
+
+  nonbuild:
+    name: Comming son
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone repo & checkout code
+      uses: actions/checkout@v2
+
+    - name: Notif Start
+      run: |
+        echo Hello...
+
   deploy-whyred:
     name: Redmi note 5 pro
-    needs: build
+    needs: nonbuild
     runs-on: ubuntu-latest
-    if: github.actor == 'NFS86'
     steps:
     - name: Clone repo & checkout code
       uses: actions/checkout@v2
@@ -454,12 +471,22 @@ jobs:
       run: |
         echo Hello...
 
-
   deploy-tulip:
     name: Redmi note 6 pro
-    needs: build
+    needs: nonbuild
     runs-on: ubuntu-latest
-    if: github.actor == 'NFS86'
+    steps:
+    - name: Clone repo & checkout code
+      uses: actions/checkout@v2
+
+    - name: Test
+      run: |
+        echo Hello...
+
+  deploy-ginkgo:
+    name: Redmi note 8 pro
+    needs: nonbuild
+    runs-on: ubuntu-latest
     steps:
     - name: Clone repo & checkout code
       uses: actions/checkout@v2
