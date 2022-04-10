@@ -26,4 +26,4 @@ curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendSticker" -d sticker
 rm -rf build.log
 exit 1
 fi
-rm -rf build.log
+#rm -rf build.log
