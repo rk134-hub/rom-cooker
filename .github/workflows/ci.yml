@@ -19,7 +19,8 @@ jobs:
 
     - name: Notif Start
       run: |
-        curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="===================================%0A        ❗<b>Rom-Builder tool started</b>❗%0A==================================="
+        curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="===================================%0A        🔱<b>Rom-Builder tool started</b>🔱%0A==================================="
+        printenv
 
 ############################################################
 
@@ -42,11 +43,11 @@ jobs:
           cd $my_dir/script
           export device="juice"
           rm -rf *
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/sync.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/building.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/upload.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/notif.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/$device/build_rom.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/sync.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/building.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/upload.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/notif.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/$device/build_rom.sh
 
     - name: Sync Rom..
       uses: NFS86/ssh-action@master
@@ -108,11 +109,11 @@ jobs:
           cd $my_dir/script
           export device="rosy"
           rm -rf *
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/sync.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/building.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/upload.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/script/notif.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/Test/$device/build_rom.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/sync.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/building.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/upload.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/notif.sh
+          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/$device/build_rom.sh
 
     - name: Sync Rom..
       uses: NFS86/ssh-action@master
