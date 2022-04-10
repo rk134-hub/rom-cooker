@@ -10,20 +10,15 @@ export rel_date="$(date "+%Y%m%d")"
 export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
 export ota="out/target/product/$device/*ota*.zip"
 
+telegram_message() {
+   curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d parse_mode="HTML" -d text="$1"
+}
 
 cd $my_dir/$rom_name
 rm -rf $shasum
 rm -rf $ota
 cd $my_dir/$rom_name/out/target/product/$device
 rclone copy --drive-chunk-size 256M --stats 1s ${file_name} NFS:$rom_name/$device -P
-
-cd $my_dir/$rom_name/out/target/product/$device
-telegram_message() {
-         curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" \
-         -d chat_id="${tg_id}" \
-         -d parse_mode="HTML" \
-         -d text="$1"
-}
 DL_LINK="https://rombuilder.projek.workers.dev/$rom_name/$device/$file_name"
 echo "=============================================="
 echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
