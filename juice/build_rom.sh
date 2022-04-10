@@ -11,7 +11,7 @@ export BUILD_HOSTNAME=RANDOMBUILD
 export ALLOW_MISSING_DEPENDENCIES=true
 lunch aosp_juice-userdebug
  
-curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="===================================%0A<b>${device_model}</b> Building Rom Started%0A<b>ROM:</b>$rom_name%0A$(echo "${var_cache_report_config}")"
+curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="===================================%0A<b>POCO M3/9T ($device)</b> Building Rom Started%0A<b>ROM:</b>$rom_name%0A$(echo "${var_cache_report_config}")"
 
 mka bacon
  
