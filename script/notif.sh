@@ -14,18 +14,14 @@ telegram_message() {
          -d text="$1"
 }
 DL_LINK="https://rombuilder.projek.workers.dev/$rom_name/$device/$file_name"
-echo "=============================================="
-echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!"; }
-echo "=============================================="
 DATE_L="$(date +%d\ %B\ %Y)"
 DATE_S="$(date +"%T")"
 echo -e \
 "
-🚀 ${rom_name}
-
 ✅ Build Completed Successfully!
 
-📱 Device: "${device_model}"
+🚀 Info Rom: "${rom_name}"
+📱 Device: "${device}"
 🖥 Branch Build: "${branch_name}"
 ⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
 📅 Date: "$(date +%d\ %B\ %Y)"
@@ -33,6 +29,7 @@ echo -e \
 " > tg.html
 TG_TEXT=$(< tg.html)
 telegram_message "$TG_TEXT"
+curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendSticker" -d sticker="CAACAgEAAx0CXv8ybAACHEJiUr3Z7W87PImIy1cs_dVTw2hdOAACqgADpAyuMtYfNzJONI2kIwQ" -d chat_id="${tg_id}"
 echo " "
 rm -rf $my_dir/$rom_name/out/target/product/$device
 cd $my_dir
