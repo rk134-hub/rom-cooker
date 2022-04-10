@@ -1,15 +1,14 @@
 #!/bin/bash
 
-export my_dir="$HOME"
-export device="$(grep unch $my_dir/script/build_rom.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)"
-export rom_name="$(grep init $my_dir/script/build_rom.sh -m 1 | cut -d / -f 4)"
-export rel_date="$(date "+%Y%m%d")"
-export file_name="$(echo *${rel_date}*.zip)"
-export branch_name=$(grep init $my_dir/script/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
-export rel_date="$(date "+%Y%m%d")"
-export shasum="out/target/product/$device/*$rel_date*.zip*sha*"
-export ota="out/target/product/$device/*ota*.zip"
-
+my_dir="$HOME"
+device="$(grep unch $my_dir/script/build_rom.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)"
+rom_name="$(grep init $my_dir/script/build_rom.sh -m 1 | cut -d / -f 4)"
+rel_date="$(date "+%Y%m%d")"
+file_name="$(echo *${rel_date}*.zip)"
+branch_name=$(grep init $my_dir/script/build.sh | awk -F "-b " '{print $2}' | awk '{print $1}')
+rel_date="$(date "+%Y%m%d")"
+shasum="out/target/product/$device/*$rel_date*.zip*sha*"
+ota="out/target/product/$device/*ota*.zip"
 
 cd $my_dir/$rom_name
 rm -rf $shasum

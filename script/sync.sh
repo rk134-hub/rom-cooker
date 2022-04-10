@@ -1,11 +1,10 @@
 #!/bin/bash
 
-export my_dir="$HOME"
-export device="$(grep unch $my_dir/script/build_rom.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)"
-export rom_name="$(grep init $my_dir/script/build_rom.sh -m 1 | cut -d / -f 4)"
-export command="$(head $my_dir/script/build_rom.sh -n $(expr $(grep '# build rom' $my_dir/script/build_rom.sh -n | cut -f1 -d:) - 1))"
-export only_sync=$(grep 'repo sync' $my_dir/script/build_rom.sh)
-
+my_dir="$HOME"
+device="$(grep unch $my_dir/script/build_rom.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)"
+rom_name="$(grep init $my_dir/script/build_rom.sh -m 1 | cut -d / -f 4)"
+command="$(head $my_dir/script/build_rom.sh -n $(expr $(grep '# build rom' $my_dir/script/build_rom.sh -n | cut -f1 -d:) - 1))"
+only_sync="$(grep 'repo sync' $my_dir/script/build_rom.sh)"
 
 mkdir -p $my_dir/ccache/$rom_name
 mkdir -p $my_dir/$rom_name
