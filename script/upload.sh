@@ -24,9 +24,7 @@ echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!";
 echo "=============================================="
 DATE_L="$(date +%d\ %B\ %Y)"
 DATE_S="$(date +"%T")"
-echo -e \
-"
-🚀 ${rom_name}
+echo -e "🚀 ${rom_name}
 
 ✅ Build Completed Successfully!
 
@@ -34,10 +32,9 @@ echo -e \
 🖥 Branch Build: "${branch_name}"
 ⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
 📅 Date: "$(date +%d\ %B\ %Y)"
-⏱ Time: "$(date +%T)"
-" > tg.html
+⏱ Time: "$(date +%T)" " > tg.html
 TG_TEXT=$(< tg.html)
-curl -s -X POST "https://api.telegram.org/bot$tg_token/sendMessage" -d chat_id="$tg_id" -d parse_mode="HTML" -d text="$TG_TEXT"
+curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="$TG_TEXT"
 echo " "
 rm -rf $my_dir/$rom_name/out/target/product/$device
 cd $my_dir
