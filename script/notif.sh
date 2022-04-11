@@ -19,7 +19,6 @@ DATE_S="$(date +"%T")"
 TXT_CAPTION="✅Build Completed Successfully!
 
 🚀 Info Rom: <code>$(cd $my_dir/$rom_name/out/target/product/$device && ls *zip -m1 | cut -d . -f 1-2)</code>
-🔩 Size: <code>$(ls -lah ${file_name} | cut -d ' ' -f 5)</code>
 📚 Timer Build: <code>$(grep "####" $my_dir/$rom_name/build.log -m 1 | cut -d '(' -f 2)</code>
 📱 Device: <code>${device}</code>
 🖥 Branch Build: <code>${branch_name}</code>
