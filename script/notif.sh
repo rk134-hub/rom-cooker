@@ -16,16 +16,16 @@ telegram_message() {
 DL_LINK="https://rombuilder.projek.workers.dev/$rom_name/$device/$file_name"
 DATE_L="$(date +%d\ %B\ %Y)"
 DATE_S="$(date +"%T")"
-TXT_CAPTION="✅ <b>Build Completed Successfully </b>
+TXT_CAPTION="✅Build Completed Successfully!
 
-🚀 <b>Info Rom:</b> <code>$(cd $my_dir/$rom_name/out/target/product/$device && ls *zip -m1 | cut -d . -f 1-2)</code>
-🔩 <b>Size:</b> <code>$(grep size: $my_dir/$rom_name/build.log -m 1 | cut -d : -f 2)</code>
-📚 <b>Time Build:</b> <code>$(grep "####" $my_dir/$rom_name/build.log -m 1 | cut -d '(' -f 2)</code>
-📱 <b>Device:</b> <code>${device}</code>
-🖥 <b>Branch Build:</b> <code>${branch_name}</code>
-🔗 <b>Download Link:</b> <a href=\"${DL_LINK}\">Here</a>
-📅 <b>Date:</b> <code>$(date +%d\ %B\ %Y)</code>
-⏱ <b>Time:</b> <code>$(date +%T)</code>"
+🚀 Info Rom: <code>$(cd $my_dir/$rom_name/out/target/product/$device && ls *zip -m1 | cut -d . -f 1-2)</code>
+🔩 Size: <code>$(grep size: $my_dir/$rom_name/build.log -m 1 | cut -d : -f 2)</code>
+📚 Timer Build: <code>$(grep "####" $my_dir/$rom_name/build.log -m 1 | cut -d '(' -f 2)</code>
+📱 Device: <code>${device}</code>
+🖥 Branch Build: <code>${branch_name}</code>
+🔗 Download Link: <a href=\"${DL_LINK}\">Here</a>
+📅 Date: <code>$(date +%d\ %B\ %Y)</code>
+🕔 Time Zone: <code>$(date +%T)WIB</code>"
 TG_TEXT="${TXT_CAPTION}"
 telegram_message "$TG_TEXT"
 curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendSticker" -d sticker="CAACAgEAAx0CXv8ybAACHEJiUr3Z7W87PImIy1cs_dVTw2hdOAACqgADpAyuMtYfNzJONI2kIwQ" -d chat_id="${tg_id}"
