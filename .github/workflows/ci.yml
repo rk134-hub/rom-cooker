@@ -29,6 +29,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.actor == 'c3eru'
+    timeout-minutes: 360
     steps:
     - name: Clone Script..
       uses: NFS86/ssh-action@master
@@ -95,6 +96,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.actor == 'NFS86'
+    timeout-minutes: 360
     steps:
     - name: Clone Script..
       uses: NFS86/ssh-action@master
