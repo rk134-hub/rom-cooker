@@ -19,18 +19,18 @@ DATE_S="$(date +"%T")"
 TXT_CAPTION="✅Build Completed Successfully!
 
 🚀 Info Rom: <code>$(cd $my_dir/$rom_name/out/target/product/$device && ls *zip -m1 | cut -d . -f 1-2)</code>
-🔩 Size: <code>$(grep size: $my_dir/$rom_name/build.log -m 1 | cut -d : -f 2)</code>
+🔩 Size: <code>$(ls -lah ${file_name} | cut -d ' ' -f 5)</code>
 📚 Timer Build: <code>$(grep "####" $my_dir/$rom_name/build.log -m 1 | cut -d '(' -f 2)</code>
 📱 Device: <code>${device}</code>
 🖥 Branch Build: <code>${branch_name}</code>
 🔗 Download Link: <a href=\"${DL_LINK}\">Here</a>
 📅 Date: <code>$(date +%d\ %B\ %Y)</code>
-🕔 Time Zone: <code>$(date +%T)WIB</code>"
+🕔 Time Zone: <code>$(date +%T) WIB</code>"
 TG_TEXT="${TXT_CAPTION}"
 telegram_message "$TG_TEXT"
 curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendSticker" -d sticker="CAACAgEAAx0CXv8ybAACHEJiUr3Z7W87PImIy1cs_dVTw2hdOAACqgADpAyuMtYfNzJONI2kIwQ" -d chat_id="${tg_id}"
 echo " "
 rm -rf $my_dir/$rom_name/out/target/product/$device
-rm -rf $my_dir/$rom_name rm -rf build.log
+rm -rf $my_dir/$rom_name/build.log
 cd $my_dir
 rm -rf .repo*
