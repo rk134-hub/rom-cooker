@@ -16,4 +16,4 @@ curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id
 mka bacon
  
 # end
-# set commit : bootleggers ify
+# set commit : switch llvm clang
