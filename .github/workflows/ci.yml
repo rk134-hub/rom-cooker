@@ -1,8 +1,9 @@
 name: Rom-Builder
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
     branches: [ main ]
-    if: github.actor == ['c3eru', 'NFS86']
 
 jobs:
   deploy-juice:
