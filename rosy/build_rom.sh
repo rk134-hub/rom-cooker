@@ -10,6 +10,7 @@ export TZ=Asia/Jakarta
 export USE_NFSparts=true # this is for NFSDev™ only
 export NFS_BUILD_VARIANT=normal # this is for NFSDev™ only normal or overclock
 # export NFS_BUILD_TYPE_GAPPS=coregapps # this is for NFSDev™ only
+export SELINUX_IGNORE_NEVERALLOWS=true
 lunch corvus_rosy-eng
 lunch corvus_rosy-user
 lunch corvus_rosy-userdebug
