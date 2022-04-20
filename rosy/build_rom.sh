@@ -8,7 +8,7 @@ export NFS_BUILD_ROM_NAME=${rom_name} # this is for NFSDev™ only
 source build/envsetup.sh
 export TZ=Asia/Jakarta
 export USE_NFSparts=true # this is for NFSDev™ only
-export NFS_BUILD_VARIANT=normal # this is for NFSDev™ only normal or overclock
+export NFS_BUILD_VARIANT=overclock # this is for NFSDev™ only normal or overclock
 # export NFS_BUILD_TYPE_GAPPS=coregapps # this is for NFSDev™ only
 export SELINUX_IGNORE_NEVERALLOWS=true
 lunch corvus_rosy-eng
