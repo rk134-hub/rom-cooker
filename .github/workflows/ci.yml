@@ -15,7 +15,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -34,7 +34,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -44,7 +44,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -54,7 +54,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         command: |
           bash $HOME/script/upload.sh
@@ -63,7 +63,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -81,7 +81,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -100,7 +100,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -110,7 +110,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -120,7 +120,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         command: |
           bash $HOME/script/upload.sh
@@ -129,7 +129,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: medusa
+        user: AzureUser
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
