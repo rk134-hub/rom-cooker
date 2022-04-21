@@ -11,7 +11,6 @@ export USE_NFSparts=true # this is for NFSDev™ only
 export NFS_BUILD_VARIANT=overclock # this is for NFSDev™ only normal or overclock
 # export NFS_BUILD_TYPE_GAPPS=coregapps # this is for NFSDev™ only
 export SELINUX_IGNORE_NEVERALLOWS=true
-export USE_GAPPS=true
 lunch corvus_rosy-eng
 lunch corvus_rosy-user
 lunch corvus_rosy-userdebug
