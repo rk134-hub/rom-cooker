@@ -20,7 +20,7 @@ bash -c "$command" |& tee -a $HOME/$rom_name/build.log || true
 a=$(grep 'FAILED:' build.log -m1 || true)
 if [[ $a == *'FAILED:'* ]]
 then
-curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="<code>${device_model} Build $rom_name</code> <b>Error.</b>[❌]"
+curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="<code>${device} Build $rom_name</code> <b>Error.</b>[❌]"
 curl -F document=@build.log "https://api.telegram.org/bot${tg_token}/sendDocument" -F chat_id="${tg_id}" -F "disable_web_page_preview=true" -F "parse_mode=html"
 curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendSticker" -d sticker="CAACAgEAAx0CXv8ybAACHEZiUr7sXBT0axhN942ECnzG_ajoPgACywADpAyuMsUxebdwuHhQIwQ" -d chat_id="${tg_id}"
 rm -rf build.log
