@@ -1,5 +1,5 @@
 # sync rom
-repo init --depth=1 --no-repo-verify -u https://github.com/crdroidandroid/android.git -b 12.1 -g default,-mips,-darwin,-notdefault
+repo init --depth=1 --no-repo-verify -u https://github.com/ProjectSakura/android.git -b 12 -g default,-mips,-darwin,-notdefault
 git clone https://github.com/NFS-projects/local_manifest --depth 1 -b cr .repo/local_manifests
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
@@ -10,8 +10,10 @@ export TZ=Asia/Jakarta
 # export USE_NFSparts=true # this is for NFSDev™ only
 export NFS_BUILD_VARIANT=normal # this is for NFSDev™ only normal or overclock
 # export NFS_BUILD_TYPE_GAPPS=coregapps # this is for NFSDev™ only
+lunch lineage_rosy-eng
+lunch lineage_rosy-user
 lunch lineage_rosy-userdebug
 curl -s -X POST "https://api.telegram.org/bot${tg_token}/sendMessage" -d chat_id="${tg_id}" -d "disable_web_page_preview=true" -d "parse_mode=html" -d text="===================================%0A<b>Redmi 5 ($device)</b> Building Rom Started%0A<b>ROM:</b>$rom_name%0A<b>Build Type:</b>$NFS_BUILD_VARIANT%0A$(echo "${var_cache_report_config}")"
-brunch rosy
+mka bacon
 # end
 
