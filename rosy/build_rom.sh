@@ -10,7 +10,7 @@ export TZ=Asia/Jakarta
 export USE_NFSparts=true # this is for NFSDev™ only
 export NFS_BUILD_VARIANT=normal # this is for NFSDev™ only normal or overclock
 # export NFS_BUILD_TYPE_GAPPS=coregapps # this is for NFSDev™ only
-export WITH_GAPPS=true
+export TARGET_BUILD_GRAPHENEOS_CAMERA=false
 lunch aosp_rosy-eng
 lunch aosp_rosy-user
 lunch aosp_rosy-userdebug
