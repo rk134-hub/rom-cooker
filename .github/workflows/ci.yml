@@ -8,7 +8,7 @@ jobs:
   deploy-vince:
     name: Redmi 5 Plus
     runs-on: ubuntu-latest
-    if: github.actor == 'rk134'
+    if: github.actor == 'rk134-hub'
     timeout-minutes: 360
     steps:
     - name: Clone Script..
