@@ -13,4 +13,6 @@ cd $my_dir/$rom_name
 rm -rf $shasum
 rm -rf $ota
 cd $my_dir/$rom_name/out/target/product/$device
-rclone copy --drive-chunk-size 256M --stats 1s *.zip NFS:$rom_name/$device -P
+mkdir -p ~/.config/rclone
+echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
+rclone copy --drive-chunk-size 256M --stats 1s *.zip ccache:$rom_name/$device -P

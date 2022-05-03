@@ -2,7 +2,7 @@
 
 export my_dir="$HOME"
 export device="$(grep unch $my_dir/script/build_rom.sh -m 1 | cut -d ' ' -f 2 | cut -d _ -f 2 | cut -d - -f 1)"
-export rom_name="$(grep init $my_dir/script/build_rom.sh -m 1 | cut -d / -f 4)"
+export rom_name="evolution"
 export command="$(tail $my_dir/script/build_rom.sh -n +$(expr $(grep '# build rom' $my_dir/script/build_rom.sh -n | cut -f1 -d:) - 1)| head -n -1 | grep -v '# end')"
 export rel_date="$(date "+%Y%m%d")"
 

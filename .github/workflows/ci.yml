@@ -5,83 +5,17 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy-juice:
-    name: POCO M3/9T
+  deploy-vince:
+    name: Redmi 5 Plus
     runs-on: ubuntu-latest
-    if: github.actor == 'c3eru'
+    if: github.actor == 'rk134'
     timeout-minutes: 360
     steps:
     - name: Clone Script..
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: rosy
-        pass: ${{ secrets.PASSWORD }}
-        args: "-tt"
-        command: |
-          my_dir="$HOME"
-          mkdir -p $my_dir/script
-          cd $my_dir/script
-          export device="juice"
-          rm -rf *
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/sync.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/building.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/upload.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/notif.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/$device/build_rom.sh
-
-    - name: Sync Rom..
-      uses: NFS86/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        user: rosy
-        pass: ${{ secrets.PASSWORD }}
-        args: "-tt"
-        command: |
-          bash $HOME/script/sync.sh
-
-    - name: Building Rom..
-      uses: NFS86/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        user: rosy
-        pass: ${{ secrets.PASSWORD }}
-        args: "-tt"
-        command: |
-          bash $HOME/script/building.sh
-
-    - name: Upload Rom..
-      uses: NFS86/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        user: rosy
-        pass: ${{ secrets.PASSWORD }}
-        command: |
-          bash $HOME/script/upload.sh
-
-    - name: Send notif..
-      uses: NFS86/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        user: rosy
-        pass: ${{ secrets.PASSWORD }}
-        args: "-tt"
-        command: |
-          bash $HOME/script/notif.sh
-
-############################################################
-
-  deploy-rosy:
-    name: Redmi 5
-    runs-on: ubuntu-latest
-    if: github.actor == 'NFS86'
-    timeout-minutes: 360
-    steps:
-    - name: Clone Script..
-      uses: NFS86/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        user: rosy
+        user: rk134
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -90,17 +24,17 @@ jobs:
           cd $my_dir/script
           export device="rosy"
           rm -rf *
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/sync.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/building.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/upload.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/script/notif.sh
-          wget https://raw.githubusercontent.com/NFS-projects/Rom-Builder/main/$device/build_rom.sh
+          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/sync.sh
+          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/building.sh
+          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/upload.sh
+          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/notif.sh
+          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/$device/build_rom.sh
 
     - name: Sync Rom..
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: rosy
+        user: rk134
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -110,7 +44,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: rosy
+        user: rk134
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |
@@ -120,7 +54,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: rosy
+        user: rk134
         pass: ${{ secrets.PASSWORD }}
         command: |
           bash $HOME/script/upload.sh
@@ -129,7 +63,7 @@ jobs:
       uses: NFS86/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        user: rosy
+        user: rk134
         pass: ${{ secrets.PASSWORD }}
         args: "-tt"
         command: |

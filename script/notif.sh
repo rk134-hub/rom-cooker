@@ -13,7 +13,7 @@ telegram_message() {
          -d parse_mode="HTML" \
          -d text="$1"
 }
-DL_LINK="https://nfsproject.projek.workers.dev/0:/$rom_name/$device/$file_name"
+DL_LINK="https://thundercat.rk134.workers.dev/0:/$rom_name/$device/$file_name"
 DATE_L="$(date +%d\ %B\ %Y)"
 DATE_S="$(date +"%T")"
 TXT_CAPTION="✅Build Completed Successfully!
