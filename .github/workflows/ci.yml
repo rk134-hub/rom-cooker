@@ -1,4 +1,4 @@
-name: Rom-Builder
+name: rom-cooker
 
 on:
   push:
