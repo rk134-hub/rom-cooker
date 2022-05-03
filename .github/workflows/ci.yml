@@ -2,7 +2,7 @@ name: rom-cooker
 
 on:
   push:
-    branches: [ main ]
+    branches: [ vince ]
 
 jobs:
   deploy-vince:
@@ -22,13 +22,13 @@ jobs:
           my_dir="$HOME"
           mkdir -p $my_dir/script
           cd $my_dir/script
-          export device="rosy"
+          export device="vince"
           rm -rf *
-          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/sync.sh
-          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/building.sh
-          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/upload.sh
-          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/script/notif.sh
-          wget https://raw.githubusercontent.com/based8953dev/Rom-Builder/main/$device/build_rom.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/sync.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/building.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/upload.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/notif.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/$device/build_rom.sh
 
     - name: Sync Rom..
       uses: NFS86/ssh-action@master
