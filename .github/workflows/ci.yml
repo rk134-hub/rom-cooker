@@ -24,11 +24,11 @@ jobs:
           cd $my_dir/script
           export device="vince"
           rm -rf *
-          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/sync.sh
-          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/building.sh
-          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/upload.sh
-          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/script/notif.sh
-          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/main/$device/build_rom.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/vince/script/sync.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/vince/script/building.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/vince/script/upload.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/vince/script/notif.sh
+          wget https://raw.githubusercontent.com/rk134-hub/rom-cooker/vicne/$device/build_rom.sh
 
     - name: Sync Rom..
       uses: NFS86/ssh-action@master
